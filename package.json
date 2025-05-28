@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server/index.js",
-    "build": "npm --prefix client run build"
+    "build": "npm client start"
   }
 }

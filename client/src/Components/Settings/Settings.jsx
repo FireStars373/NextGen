@@ -73,7 +73,7 @@ export const Settings = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/change-password",
+        "http://nextgen-backend-zx9m.onrender.com/api/users/change-password",
         {
           method: "POST",
           headers: {
@@ -114,7 +114,7 @@ export const Settings = () => {
   const handleBuyCredits = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/purchase-credits",
+        "http://nextgen-backend-zx9m.onrender.com/api/users/purchase-credits",
         {
           method: "POST",
           headers: {
@@ -150,7 +150,7 @@ export const Settings = () => {
   const handleBuySubscription = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/purchase-subscription",
+        "http://nextgen-backend-zx9m.onrender.com/api/users/purchase-subscription",
         {
           method: "POST",
           headers: {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
 
 const useFetchEuroleagueData = () => {
   const [matches, setMatches] = useState([]);

@@ -1,5 +1,5 @@
-const pool = require('../config/db');
-const bcrypt = require('bcryptjs');
+const pool = require("../db");
+const bcrypt = require("bcryptjs");
 
 // Register new user
 exports.register = async (req, res) => {
@@ -8,14 +8,14 @@ exports.register = async (req, res) => {
 
     // Check if user already exists
     const [existingUsers] = await pool.execute(
-      'SELECT * FROM users WHERE email = ? OR username = ?',
+      "SELECT * FROM users WHERE email = ? OR username = ?",
       [email, username]
     );
 
     if (existingUsers.length > 0) {
       return res.status(400).json({
         success: false,
-        message: 'User with this email or username already exists'
+        message: "User with this email or username already exists",
       });
     }
 
@@ -25,27 +25,27 @@ exports.register = async (req, res) => {
 
     // Create new user
     const [result] = await pool.execute(
-      'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hashedPassword]
     );
 
     // Get the newly created user
     const [newUser] = await pool.execute(
-      'SELECT id, username, email, premium_status, subscription_end_date, Credit_count FROM users WHERE id = ?',
+      "SELECT id, username, email, premium_status, subscription_end_date, Credit_count FROM users WHERE id = ?",
       [result.insertId]
     );
 
     res.status(201).json({
       success: true,
-      message: 'User registered successfully',
-      user: newUser[0]
+      message: "User registered successfully",
+      user: newUser[0],
     });
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error registering user',
-      error: error.message
+      message: "Error registering user",
+      error: error.message,
     });
   }
 };
@@ -56,15 +56,14 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if user exists
-    const [users] = await pool.execute(
-      'SELECT * FROM users WHERE email = ?',
-      [email]
-    );
+    const [users] = await pool.execute("SELECT * FROM users WHERE email = ?", [
+      email,
+    ]);
 
     if (users.length === 0) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials :('
+        message: "Invalid credentials :(",
       });
     }
 
@@ -76,28 +75,28 @@ exports.login = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials :('
+        message: "Invalid credentials :(",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Login successful!',
+      message: "Login successful!",
       user: {
         id: user.id,
         username: user.username,
         email: user.email,
         premium_status: user.premium_status,
         subscription_end_date: user.subscription_end_date,
-        Credit_count: user.Credit_count
-      }
+        Credit_count: user.Credit_count,
+      },
     });
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error during login',
-      error: error.message
+      message: "Error during login",
+      error: error.message,
     });
   }
 };
@@ -108,27 +107,29 @@ exports.changePassword = async (req, res) => {
     const { userId, currentPassword, newPassword } = req.body;
 
     // Get user from database
-    const [users] = await pool.execute(
-      'SELECT * FROM users WHERE id = ?',
-      [userId]
-    );
+    const [users] = await pool.execute("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ]);
 
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
     const user = users[0];
 
     // Verify current password
-    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+    const isPasswordValid = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
 
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
-        message: 'Current password is incorrect'
+        message: "Current password is incorrect",
       });
     }
 
@@ -137,21 +138,21 @@ exports.changePassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(newPassword, salt);
 
     // Update password in database
-    await pool.execute(
-      'UPDATE users SET password = ? WHERE id = ?',
-      [hashedPassword, userId]
-    );
+    await pool.execute("UPDATE users SET password = ? WHERE id = ?", [
+      hashedPassword,
+      userId,
+    ]);
 
     res.status(200).json({
       success: true,
-      message: 'Password changed successfully'
+      message: "Password changed successfully",
     });
   } catch (error) {
-    console.error('Change password error:', error);
+    console.error("Change password error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error changing password',
-      error: error.message
+      message: "Error changing password",
+      error: error.message,
     });
   }
 };
@@ -162,15 +163,14 @@ exports.purchaseCredits = async (req, res) => {
     const { userId, creditAmount } = req.body;
 
     // Get current user
-    const [users] = await pool.execute(
-      'SELECT * FROM users WHERE id = ?',
-      [userId]
-    );
+    const [users] = await pool.execute("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ]);
 
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -178,22 +178,22 @@ exports.purchaseCredits = async (req, res) => {
     const newCreditCount = (user.Credit_count || 0) + creditAmount;
 
     // Update user's credit count
-    await pool.execute(
-      'UPDATE users SET Credit_count = ? WHERE id = ?',
-      [newCreditCount, userId]
-    );
+    await pool.execute("UPDATE users SET Credit_count = ? WHERE id = ?", [
+      newCreditCount,
+      userId,
+    ]);
 
     res.status(200).json({
       success: true,
-      message: 'Credits purchased successfully',
-      newCreditCount
+      message: "Credits purchased successfully",
+      newCreditCount,
     });
   } catch (error) {
-    console.error('Purchase credits error:', error);
+    console.error("Purchase credits error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error purchasing credits',
-      error: error.message
+      message: "Error purchasing credits",
+      error: error.message,
     });
   }
 };
@@ -204,40 +204,39 @@ exports.purchaseSubscription = async (req, res) => {
     const { userId, months } = req.body;
 
     // Get current user
-    const [users] = await pool.execute(
-      'SELECT * FROM users WHERE id = ?',
-      [userId]
-    );
+    const [users] = await pool.execute("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ]);
 
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
     // Calculate subscription end date (1 month from now)
     const endDate = new Date();
     endDate.setMonth(endDate.getMonth() + months);
-    const formattedEndDate = endDate.toISOString().split('T')[0];
+    const formattedEndDate = endDate.toISOString().split("T")[0];
 
     // Update user's premium status and end date
     await pool.execute(
-      'UPDATE users SET premium_status = 1, subscription_end_date = ? WHERE id = ?',
+      "UPDATE users SET premium_status = 1, subscription_end_date = ? WHERE id = ?",
       [formattedEndDate, userId]
     );
 
     res.status(200).json({
       success: true,
-      message: 'Premium subscription activated successfully',
-      subscription_end_date: formattedEndDate
+      message: "Premium subscription activated successfully",
+      subscription_end_date: formattedEndDate,
     });
   } catch (error) {
-    console.error('Purchase subscription error:', error);
+    console.error("Purchase subscription error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error purchasing subscription',
-      error: error.message
+      message: "Error purchasing subscription",
+      error: error.message,
     });
   }
 };
@@ -248,15 +247,14 @@ exports.updateCredits = async (req, res) => {
     const { userId, creditAmount } = req.body;
 
     // Get current user
-    const [users] = await pool.execute(
-      'SELECT * FROM users WHERE id = ?',
-      [userId]
-    );
+    const [users] = await pool.execute("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ]);
 
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -267,27 +265,27 @@ exports.updateCredits = async (req, res) => {
     if (newCreditCount < 0) {
       return res.status(400).json({
         success: false,
-        message: 'Not enough credits'
+        message: "Not enough credits",
       });
     }
 
     // Update user's credit count
-    await pool.execute(
-      'UPDATE users SET Credit_count = ? WHERE id = ?',
-      [newCreditCount, userId]
-    );
+    await pool.execute("UPDATE users SET Credit_count = ? WHERE id = ?", [
+      newCreditCount,
+      userId,
+    ]);
 
     res.status(200).json({
       success: true,
-      message: 'Credits updated successfully',
-      newCreditCount
+      message: "Credits updated successfully",
+      newCreditCount,
     });
   } catch (error) {
-    console.error('Update credits error:', error);
+    console.error("Update credits error:", error);
     res.status(500).json({
       success: false,
-      message: 'Error updating credits',
-      error: error.message
+      message: "Error updating credits",
+      error: error.message,
     });
   }
-}; 
+};

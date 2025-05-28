@@ -11,7 +11,7 @@ const CompareTeams = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const BACKEND_URL = "http://localhost:5000"; // Change this port if your backend uses a different one
+  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com"; // Change this port if your backend uses a different one
 
   useEffect(() => {
     const fetchTeamsData = async () => {
