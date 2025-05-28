@@ -27,7 +27,7 @@ export const Ratings = () => {
   const navigate = useNavigate();
   const formattedDate = new Date().toISOString().split("T")[0];
 
-  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
+  const BACKEND_URL = "https://nextgen-backend-zx9m.onrender.com";
 
   // Fetch players from the database
   useEffect(() => {
@@ -307,7 +307,7 @@ export const Ratings = () => {
             <div className="player-header">
               <div className="player-photo-container">
                 <img
-                  src={`http://nextgen-backend-zx9m.onrender.com${player1.photo}`}
+                  src={`https://nextgen-backend-zx9m.onrender.com${player1.photo}`}
                   alt={player1.name}
                 />
               </div>
@@ -323,7 +323,7 @@ export const Ratings = () => {
             <div className="player-header">
               <div className="player-photo-container">
                 <img
-                  src={`http://nextgen-backend-zx9m.onrender.com${player2.photo}`}
+                  src={`https://nextgen-backend-zx9m.onrender.com${player2.photo}`}
                   alt={player2.name}
                 />
               </div>
@@ -601,7 +601,7 @@ export const Ratings = () => {
                     <div className="top-player-photo">
                       <img
                         style={{ width: "130px" }}
-                        src={`http://nextgen-backend-zx9m.onrender.com${player.photo}`}
+                        src={`https://nextgen-backend-zx9m.onrender.com${player.photo}`}
                         alt={`${player.name} photo`}
                       />
                     </div>

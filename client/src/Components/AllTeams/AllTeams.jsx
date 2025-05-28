@@ -163,7 +163,7 @@ export const AllTeams = () => {
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   // Backend URL
-  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
+  const BACKEND_URL = "https://nextgen-backend-zx9m.onrender.com";
 
   // Fetch teams from the database
   useEffect(() => {
@@ -325,7 +325,7 @@ export const AllTeams = () => {
               onClick={() => handleTeamRedirect(team.name)}
             >
               <img
-                src={`http://nextgen-backend-zx9m.onrender.com${team.logo}`}
+                src={`http://localhost:5000${team.logo}`}
                 alt={`${team} logo`}
                 className="team-logo"
               />

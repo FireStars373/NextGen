@@ -12,7 +12,7 @@ export const MatchDetails = () => {
 
   const BACKEND_URL =
     process.env.REACT_APP_BACKEND_URL ||
-    "http://nextgen-backend-zx9m.onrender.com";
+    "https://nextgen-backend-zx9m.onrender.com";
 
   useEffect(() => {
     const fetchMatchData = async () => {

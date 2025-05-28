@@ -935,7 +935,7 @@ export const TeamStats = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
+  const BACKEND_URL = "https://nextgen-backend-zx9m.onrender.com";
 
   // Fetch teams from the database
   useEffect(() => {
@@ -1078,7 +1078,7 @@ export const TeamStats = () => {
       </div>
       <div className="about-team">
         <img
-          src={`http://nextgen-backend-zx9m.onrender.com${selectedTeamData.logo}`}
+          src={`https://nextgen-backend-zx9m.onrender.com${selectedTeamData.logo}`}
           alt="Description"
         />
         <p>{selectedTeamData.description}</p>

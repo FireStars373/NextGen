@@ -118,7 +118,7 @@ export const Login = () => {
 
     try {
       const response = await fetch(
-        "http://nextgen-backend-zx9m.onrender.com/api/users/login",
+        "https://nextgen-backend-zx9m.onrender.com/api/users/login",
         {
           method: "POST",
           headers: {

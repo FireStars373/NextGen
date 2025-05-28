@@ -59,7 +59,7 @@ export const Register = () => {
 
     try {
       const response = await fetch(
-        "http://nextgen-backend-zx9m.onrender.com/api/users/register",
+        "https://nextgen-backend-zx9m.onrender.com/api/users/register",
         {
           method: "POST",
           headers: {

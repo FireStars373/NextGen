@@ -27,7 +27,7 @@ export const MainPage = () => {
   const [selected, setSelected] = useState("Content1");
   const { matches, players, teams, loading, error } = useFetchEuroleagueData();
   const navigate = useNavigate();
-  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
+  const BACKEND_URL = "https://nextgen-backend-zx9m.onrender.com";
   const isLoggedIn = !!localStorage.getItem("user"); // or context, cookie, etc.
 
   const topPlayers = getTopPlayers(players, 2);
@@ -91,7 +91,7 @@ export const MainPage = () => {
               <div className="top-player-photo">
                 <img
                   style={{ width: "130px" }}
-                  src={`http://nextgen-backend-zx9m.onrender.com${player.photo}`}
+                  src={`https://nextgen-backend-zx9m.onrender.com${player.photo}`}
                   alt={`${player.name} photo`}
                 />
               </div>

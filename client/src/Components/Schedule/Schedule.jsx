@@ -274,7 +274,7 @@ export const Schedule = () => {
             <p>
               <img
                 style={{ width: "100px" }}
-                src={`http://nextgen-backend-zx9m.onrender.com${latestGame.homeTeam.logo}`}
+                src={`https://nextgen-backend-zx9m.onrender.com${latestGame.homeTeam.logo}`}
                 alt="Description"
                 onClick={() => handleTeamOverview(latestGame.homeTeam.name)}
               />
@@ -337,7 +337,7 @@ export const Schedule = () => {
             <p>
               <img
                 style={{ width: "100px" }}
-                src={`http://nextgen-backend-zx9m.onrender.com${latestGame.awayTeam.logo}`}
+                src={`https://nextgen-backend-zx9m.onrender.com${latestGame.awayTeam.logo}`}
                 alt="Description"
                 onClick={() => handleTeamOverview(latestGame.awayTeam.name)}
               />
@@ -382,7 +382,7 @@ export const Schedule = () => {
                   >
                     <img
                       style={{ width: "20px" }}
-                      src={`http://nextgen-backend-zx9m.onrender.com${match.homeTeam?.logo}`}
+                      src={`https://nextgen-backend-zx9m.onrender.com${match.homeTeam?.logo}`}
                       alt="Description"
                       onClick={() => handleTeamOverview(match.homeTeam?.name)}
                     />
@@ -439,7 +439,7 @@ export const Schedule = () => {
                   >
                     <img
                       style={{ width: "30px" }}
-                      src={`http://nextgen-backend-zx9m.onrender.com${match.awayTeam?.logo}`}
+                      src={`https://nextgen-backend-zx9m.onrender.com${match.awayTeam?.logo}`}
                       alt="Description"
                       onClick={() => handleTeamOverview(match.awayTeam?.name)}
                     />
@@ -623,7 +623,7 @@ export const Schedule = () => {
                                     justifyContent: "right",
                                     width: "40%",
                                   }}
-                                  src={`http://nextgen-backend-zx9m.onrender.com${tempMVP.photo}`}
+                                  src={`https://nextgen-backend-zx9m.onrender.com${tempMVP.photo}`}
                                   alt="Player photo"
                                 />
                               </div>

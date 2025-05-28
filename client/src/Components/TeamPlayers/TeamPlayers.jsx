@@ -109,7 +109,7 @@ export const TeamPlayers = () => {
   const [error, setError] = useState(null);
   const { PlayersId } = useParams();
   const navigate = useNavigate();
-  const BACKEND_URL = "http://nextgen-backend-zx9m.onrender.com";
+  const BACKEND_URL = "https://nextgen-backend-zx9m.onrender.com";
   const [user, setUser] = useState(null);
   const [unlockedFacts, setUnlockedFacts] = useState([]);
   const [purchaseMessage, setPurchaseMessage] = useState("");
@@ -315,7 +315,7 @@ export const TeamPlayers = () => {
         <div className="player-profile">
           <img
             style={{ height: "300px" }}
-            src={`http://nextgen-backend-zx9m.onrender.com${selectedDataPlayer.photo}`}
+            src={`https://nextgen-backend-zx9m.onrender.com${selectedDataPlayer.photo}`}
             alt={selectedDataPlayer.name}
           />
           <div className="player-info">
