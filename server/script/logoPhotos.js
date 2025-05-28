@@ -2,7 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const pool = require("../config/db");
 
-const photoFolder = path.join(__dirname, "../../Components/Assets/TeamLogo");
+const photoFolder = path.join(
+  __dirname,
+  "../../client/src/Components/Assets/TeamLogo"
+);
 
 async function updatePlayerPhotos() {
   const connection = await pool.getConnection();

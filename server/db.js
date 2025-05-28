@@ -5,6 +5,7 @@ require("dotenv").config();
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "yamabiko.proxy.rlwy.net",
   user: process.env.DB_USER || "railway",
+  port: parseInt(process.env.DB_PORT || 34700),
   password: process.env.DB_PASSWORD || "t9dkR4WoA75.qj_n4TlP1GlRXHQ_G6Tg",
   database: process.env.DB_NAME || "railway",
   waitForConnections: true,

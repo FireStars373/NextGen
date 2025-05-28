@@ -31,11 +31,15 @@ app.use("/api/player_stats", playerStatsRoutes);
 app.use("/api/euroleaguematches", matchRoutes);
 app.use(
   "/images",
-  express.static(path.join(__dirname, "../Components/Assets/TeamLogo"))
+  express.static(
+    path.join(__dirname, "../client/src/Components/Assets/TeamLogo")
+  )
 );
 app.use(
   "/images",
-  express.static(path.join(__dirname, "../Components/Assets/PlayerPhoto"))
+  express.static(
+    path.join(__dirname, "../client/src/Components/Assets/PlayerPhoto/")
+  )
 );
 
 // Test database connection

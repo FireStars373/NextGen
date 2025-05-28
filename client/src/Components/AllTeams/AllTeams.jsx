@@ -238,6 +238,7 @@ export const AllTeams = () => {
     navigate(`/TeamStats/${teamName}`);
   };
 
+  console.log(selectedLeague);
   return (
     <div>
       <h1 className="page-h1">EuroLeagues Teams</h1>
