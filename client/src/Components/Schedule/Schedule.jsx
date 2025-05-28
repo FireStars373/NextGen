@@ -628,20 +628,6 @@ export const Schedule = () => {
                                 />
                               </div>
                             </div>
-                            <div className="game-details-overview-group">
-                              <string
-                                onClick={() => handleMatchOverview(match.id)}
-                              >
-                                More Information
-                              </string>
-                              <ArrowRight
-                                style={{
-                                  width: "32px",
-                                  height: "32px",
-                                }}
-                                onClick={() => handleMatchOverview(match.id)}
-                              ></ArrowRight>
-                            </div>
                           </div>
                         </>
                       )}
