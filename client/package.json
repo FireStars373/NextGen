@@ -26,12 +26,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "vercel-build": "npm run build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "chmod +x ./node_modules/.bin/react-scripts"
+  "build": "react-scripts build",
+  "start": "serve -s build"
+}
   },
   "eslintConfig": {
     "extends": [
