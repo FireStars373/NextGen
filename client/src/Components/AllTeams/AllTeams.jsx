@@ -325,7 +325,7 @@ export const AllTeams = () => {
               onClick={() => handleTeamRedirect(team.name)}
             >
               <img
-                src={`http://localhost:5000${team.logo}`}
+                src={`https://nextgen-backend-zx9m.onrender.com${team.logo}`}
                 alt={`${team} logo`}
                 className="team-logo"
               />
